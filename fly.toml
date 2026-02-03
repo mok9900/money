@@ -1,0 +1,18 @@
+app = "flyiovscode"
+primary_region = "nrt"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_start_machines = false
+  auto_stop_machines = false
+
+# 기존 500GB 볼륨 (지휘관님의 소중한 데이터)
+[[mounts]]
+  source = "code_data"
+  destination = "/home/coder"
+
+[vm]
+  cpu_kind = "performance"
+  cpus = 16
+  memory_mb = 131072
