@@ -1,18 +1,20 @@
-app = "flyiovscode"
+app = "xox-miner-test"
 primary_region = "nrt"
 
-[http_service]
-  internal_port = 8080
-  force_https = true
-  auto_start_machines = false
-  auto_stop_machines = false
+[build]
+  dockerfile = "Dockerfile"
 
-# 기존 500GB 볼륨 (지휘관님의 소중한 데이터)
-[[mounts]]
-  source = "code_data"
-  destination = "/home/coder"
+[[services]]
+  protocol = "tcp"
+  internal_port = 80
+  processes = ["app"]
+
+[[services.ports]]
+  port = 80
+  handlers = ["http"]
 
 [vm]
+  # KVM 가속을 위해 성능이 보장되는 머신 사용 권장
   cpu_kind = "performance"
-  cpus = 16
-  memory_mb = 131072
+  cpus = 1
+  memory_mb = 2048
