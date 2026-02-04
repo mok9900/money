@@ -1,5 +1,5 @@
-# 표준 리눅스 이미지로 호환성 확보
-FROM ubuntu:22.04
+# 표준 리눅스 이미지로 호환성 확보 (Fly.io 빌더의 플랫폼 불일치 방지)
+FROM --platform=linux/amd64 ubuntu:22.04
 
 # 필수 도구 설치
 RUN apt-get update && apt-get install -y curl tar ca-certificates && rm -rf /var/lib/apt/lists/*

